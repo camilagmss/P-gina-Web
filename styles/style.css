@@ -1,141 +1,226 @@
-:root {
-    /* Fundo */
-    --color-bg-dark: #061b3a;      /* azul marinho mais elegante */
-    --color-bg-light: #0d2a4f;     /* azul intermediário */
-    /* Acentos */
-    --color-primary: #1E90FF;      /* azul vivo */
-    --color-secondary: #00BFFF;    /* azul mais claro */
-    --color-tertiary: #87CEFA;     /* azul suave */
-    /* Texto */
-    --color-text-light: #F9FAFB;   /* branco quase puro */
-    --color-text-dark: #1C1C1C;    /* cinza bem escuro */
-    --color-text-muted: #B0C4DE;   /* azul acinzentado */
-    /* Feedback */
-    --color-success: #3CB371;
-    --color-error: #FF6B6B;
-    /* Extras */
-    --radius: 12px;
-    --shadow: 0 4px 12px rgba(0,0,0,0.2);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;1,600&display=swap');
+
+:root{
+  --color-bg-dark: #061b3a;
+  --color-bg-light: #0d2a4f;
+  --color-primary: #1E90FF;
+  --color-secondary: #00BFFF;
+  --color-tertiary: #87CEFA;
+  --color-text-light: #F9FAFB;
+  --color-text-dark: #1C1C1C;
+  --color-text-muted: #B0C4DE;
+  --color-success: #3CB371;
+  --color-error: #FF6B6B;
+  --radius: 12px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+ 
+  --header-height: 72px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    transition: 0.2s ease-in-out;
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  padding-top: calc(var(--header-height) + 8px);
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--color-bg-dark);
-    color: var(--color-text-light);
-    line-height: 1.6;
-}
-
-/* Seções */
-section {
-    padding: 4rem 2rem;
-    margin: 0 auto;
-    max-width: 1200px;
-}
+section{ padding: 4rem 2rem; margin: 0 auto; max-width: 1200px; }
 
 /* HEADER */
-header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 99;
-    border-bottom: 1px solid var(--color-tertiary);
-    background: rgba(6, 27, 58, 0.95);
-    backdrop-filter: blur(8px);
-    box-shadow: var(--shadow);
+header{
+  position: fixed;
+  top:0; left:0; right:0;
+  height: var(--header-height);
+  z-index: 999;
+  border-bottom: 1px solid var(--color-tertiary);
+  background: rgba(6,27,58,0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow);
+}
+header section{
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 0 2rem;
 }
 
-header section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.8rem 2rem;
+.logo img{ max-height: 42px; width:auto; display:block; }
+
+/* nav desktop */
+.nav-menu{
+  display:flex;
+  gap: 1.5rem;
+  align-items:center;
+}
+.nav-menu a{
+  color: var(--color-text-light);
+  font-size: 1.05rem;
+  font-weight: 600;
+  position: relative;
+}
+.nav-menu a::after{
+  content:""; position:absolute; left:0; bottom:-6px;
+  width:0; height:2px; background: var(--color-secondary);
+  transition: width .25s ease;
+}
+.nav-menu a:hover{ color: var(--color-secondary); }
+.nav-menu a:hover::after{ width:100%; }
+
+.menu-toggle{
+  display:none;
+  width:44px; height:36px; border-radius:8px; background:transparent;
+  border: none; cursor:pointer;
+  align-items:center; justify-content:center;
+}
+.menu-toggle span{ display:block; width:22px; height:2px; background:var(--color-text-light); margin:4px 0; transition: all .25s; }
+
+.imagemHome{
+  display:flex; justify-content:center; align-items:center;
+  min-height: calc(100vh - var(--header-height));
+  background: linear-gradient(rgba(6,27,58,0.7), rgba(6,27,58,0.7)), url("../fotos/pagHome.png") center/cover no-repeat;
+  text-align:center;
+  padding: 2rem;
+}
+.imagem{
+  color: var(--color-text-light);
+  max-width: 900px;
+  padding: 2rem;
+  border-radius: var(--radius);
+  background: rgba(0,0,0,0.36);
+  box-shadow: var(--shadow);
+}
+.citacao{
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  color: var(--color-tertiary);
+  margin: 0 auto 1.25rem;
+  max-width: 800px;
+  line-height: 1.8;
+}
+.citacao span{
+  display:block; margin-top:0.75rem; font-size:0.95rem; font-style:normal; color:var(--color-text-muted);
 }
 
-/* Logo */
-.logo img {
-    max-height: 30px;
-    width: auto;
+.botoes{ display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:1rem; }
+.botao{
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-weight: 600;
+  display:inline-block;
+  transition: transform .18s ease, background .18s ease;
+}
+.botao:hover{ background: var(--color-secondary); transform: translateY(-3px); }
+
+.titulo{
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  text-align:center;
+  margin-bottom: 1.2rem;
 }
 
-/* NAV */
-nav {
-    display: flex;
-    gap: 2rem;
+.suaSantificacao .canonizacao,
+.suaSantificacao .milagres,
+.suaSantificacao .santidade {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  flex-wrap: wrap;
 }
 
-nav a {
-    color: var(--color-text-light);
-    font-size: 1.1rem;
-    font-weight: 500;
-    position: relative;
+.suaSantificacao .canonizacao:nth-child(even),
+.suaSantificacao .milagres:nth-child(even),
+.suaSantificacao .santidade:nth-child(even) {
+  flex-direction: row-reverse;
 }
 
-nav a::after {
-    content: "";
-    position: absolute;
-    left: 0; bottom: -4px;
-    width: 0%; height: 2px;
-    background: var(--color-secondary);
-    transition: width 0.3s ease;
+.suaSantificacao .canonizacao .imagem img,
+.suaSantificacao .milagres .imagem img,
+.suaSantificacao .santidade .imagem img {
+  width: 260px;
+  max-width: 40%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+  box-shadow: var(--shadow);
 }
 
-nav a:hover {
-    color: var(--color-secondary);
+.suaSantificacao .canonizacao .conteudo,
+.suaSantificacao .milagres .conteudo,
+.suaSantificacao .santidade .conteudo {
+  padding: 1.25rem;
+  flex: 1;
+  min-width: 220px;
 }
 
-nav a:hover::after {
-    width: 100%;
+.suaSantificacao .conteudo p {
+  font-size: 1.15rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
 }
 
-/* Botões */
-.botao {
-    background: var(--color-primary);
-    color: #fff;
-    padding: 0.8rem 2rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    font-weight: 600;
+.suaSantificacao .conteudo h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--color-tertiary);
 }
 
-.botao:hover {
-    background: var(--color-secondary);
-    transform: translateY(-2px);
+.nascimento, .adolescencia, .morte {
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
 }
 
-/* Hero / Home */
-.imagemHome {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(rgba(6,27,58,0.7), rgba(6,27,58,0.7)),
-                url("../fotos/pagHome.png") center/cover no-repeat;
-    text-align: center;
+.imagemNascimento, .imagemAdolescencia, .imagemMorte {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
 }
 
-.imagem {
-    color: var(--color-text-light);
-    max-width: 800px;
-    padding: 2rem;
-    border-radius: var(--radius);
-    background: rgba(0,0,0,0.4);
-    box-shadow: var(--shadow);
+.imagemNascimento img,
+.imagemAdolescencia img,
+.imagemMorte img {
+  width: 260px;
+  max-width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  object-fit: cover;
 }
 
-.imagem h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+.nascimentoConteudo,
+.adolescenciaConteudo,
+.morteConteudo {
+  flex: 1;
+  min-width: 220px;
 }
 
-.imagem p {
-    font-size: 1.2rem;
-    color: var(--color-text-muted);
+.nascimentoConteudo p,
+.adolescenciaConteudo p,
+.morteConteudo p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-text-light);
 }
+
+
